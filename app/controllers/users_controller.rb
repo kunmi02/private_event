@@ -19,6 +19,32 @@ class UsersController < ApplicationController
   def edit
   end
 
+  # GET /sign_in
+  def sign_in
+    # @username = params[:username]
+    # @user = User.find_by(email: @username)
+    # respond_to do |format|
+    #   if User.where(username: @username).any?
+    #     format.html { redirect_to root_path, notice: 'User logged in successfully'}
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #   end
+    # end
+    
+  end
+
+  def log_in
+    @username = params[:username]
+    @user = User.find_by(email: @username)
+    respond_to do |format|
+      if User.where(username: @username).any?
+        format.html { redirect_to root_path, notice: 'User logged in successfully'}
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # POST /users or /users.json
   def create
     @user = User.new(user_params)

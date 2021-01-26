@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-
   root to: 'users#index'
-  resources :users, only: %i[show new show]
-
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :users, only: %i[show new create]
+  get 'sign-in', to: 'users#sign_in'
+  # post 'sign-in', to: 'users#log_in'
 end
