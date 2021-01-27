@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update destroy ]
+  before_action :set_user, only: %i[show edit update destroy]
+  # before_action :require_login, only: %i[edit update index]
 
   # GET /users or /users.json
   def index
@@ -22,36 +23,19 @@ class UsersController < ApplicationController
   # GET /sign_in
   def sign_in
     @user = User.new
-    # @username = params[:username]
-    # @user = User.find_by(email: @username)
-    # respond_to do |format|
-    #   if User.where(username: @username).any?
-    #     format.html { redirect_to root_path, notice: 'User logged in successfully'}
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #   end
-    # end
-    
   end
 
-  def log_in
-    logger.info "Processing the req..."
-    @username = params[:username]
-    # @user = User.find_by(username: @username)
-    @user = User.where(username: :username).any?
+  # def log_in
+  #   @username = params[:username]
+  #   @user = User.where(username: @username).any?
     
-      if @user
-        # flash[:alert] = 'User  found.'
-        logger.info "Processing the requ..."
-        redirect_to root_path
-        # render :show
-      else
-        flash[:alert] = 'User not found.'
-        logger.info "Processing the request..."
-        # render :new
-        redirect_to @user
-      end
-  end
+  #     if @user
+  #       redirect_to users_path
+  #     else
+  #       flash[:alert] = 'User not found.'
+  #       redirect_to sign_in_path
+  #     end
+  # end
 
   # POST /users or /users.json
   def create

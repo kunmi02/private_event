@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'users#index'
+  root to: 'users#sign_in'
   resources :users, only: %i[show new create index]
-  get 'sign-in', to: 'users#sign_in'
-  post 'log-in', to: 'users#log_in'
+  get 'log-in', to: 'session#log_in'
+  delete 'log-out', to: 'session#log_out'
+
 end

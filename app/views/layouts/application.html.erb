@@ -11,6 +11,19 @@
   </head>
 
   <body>
+    <% flash.each do |name, message| %>
+    <div class="<%= name %>"><%= message %></div>
+  <% end %>
+
+
+  <% if session[:current_user_id] %>
+    <span>Welcome! </span>
+    <strong><%= session[:user_name] %></strong>
+    <span>&nbsp</span>
+    <span>&nbsp</span>
+    <span>&nbsp</span>
+    <%= link_to 'Log out', log_out_path, method: :delete%>
+  <% end %>
     <%= yield %>
   </body>
 </html>
