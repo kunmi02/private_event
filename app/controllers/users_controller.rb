@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :set_user, only: %i[show edit update destroy ]
 
   # GET /users or /users.json
   def index
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     logger.info "Processing the req..."
     @username = params[:username]
     # @user = User.find_by(username: @username)
-    @user = User.where(username: 'Akinkunmi02').any?
+    @user = User.where(username: :username).any?
     
       if @user
         # flash[:alert] = 'User  found.'
