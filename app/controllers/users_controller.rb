@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   # GET /sign_in
   def sign_in
+    @user = User.new
     # @username = params[:username]
     # @user = User.find_by(email: @username)
     # respond_to do |format|
@@ -34,15 +35,22 @@ class UsersController < ApplicationController
   end
 
   def log_in
+    logger.info "Processing the req..."
     @username = params[:username]
-    @user = User.find_by(email: @username)
-    respond_to do |format|
-      if User.where(username: @username).any?
-        format.html { redirect_to root_path, notice: 'User logged in successfully'}
+    # @user = User.find_by(username: @username)
+    @user = User.where(username: 'Akinkunmi02').any?
+    
+      if @user
+        # flash[:alert] = 'User  found.'
+        logger.info "Processing the requ..."
+        redirect_to root_path
+        # render :show
       else
-        format.html { render :new, status: :unprocessable_entity }
+        flash[:alert] = 'User not found.'
+        logger.info "Processing the request..."
+        # render :new
+        redirect_to @user
       end
-    end
   end
 
   # POST /users or /users.json
