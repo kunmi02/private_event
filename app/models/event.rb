@@ -1,3 +1,6 @@
 class Event < ApplicationRecord
-    belongs_to :user, class_name: 'User'
+
+    has_many :joiners
+    has_many :users, through: :joiners
+
 end

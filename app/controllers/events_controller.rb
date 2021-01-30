@@ -13,6 +13,11 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    current_user = User.find(session[:current_user_id]) if session[:current_user_id]
+    if current_user.nil?
+      redirect_to root_path
+    end
+    
   end
 
   # GET /events/1/edit
@@ -21,10 +26,14 @@ class EventsController < ApplicationController
 
   # POST /events or /events.json
   def create
+
     current_user = User.find(session[:current_user_id])
-    @event = current_user.event.build(event_params)
+    @event = Event.new(event_params)
+
     respond_to do |format|
       if @event.save
+        Joiner.create(event: @event, user: current_user)
+
         format.html { redirect_to @event, notice: "Event was successfully created." }
         format.json { render :show, status: :created, location: @event }
       else

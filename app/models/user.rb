@@ -1,4 +1,7 @@
 class User < ApplicationRecord
-has_many :events, foreign_key: :user_id
-has_many :created_events, through: :joiner, source: :event
+
+    has_many :joiners
+    has_many :events, through: :joiners
+
 end
+
