@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_01_085149) do
+ActiveRecord::Schema.define(version: 2021_01_29_135310) do
 
 # Could not dump table "events" because of following StandardError
 #   Unknown type '' for column 'user_id'
