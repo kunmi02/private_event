@@ -17,7 +17,6 @@ class EventsController < ApplicationController
     if current_user.nil?
       redirect_to root_path
     end
-    
   end
 
   # GET /events/1/edit
