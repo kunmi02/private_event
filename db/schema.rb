@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_29_135310) do
+ActiveRecord::Schema.define(version: 2021_02_01_222758) do
+
+  create_table "attendees", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "events_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["events_id"], name: "index_attendees_on_events_id"
+    t.index ["user_id"], name: "index_attendees_on_user_id"
+  end
 
 # Could not dump table "events" because of following StandardError
 #   Unknown type '' for column 'user_id'
@@ -31,6 +40,8 @@ ActiveRecord::Schema.define(version: 2021_01_29_135310) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "attendees", "events", column: "events_id"
+  add_foreign_key "attendees", "users"
   add_foreign_key "joiners", "events"
   add_foreign_key "joiners", "users"
 end

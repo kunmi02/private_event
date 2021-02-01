@@ -1,9 +1,10 @@
 class Event < ApplicationRecord
 
-    belongs_to :user
+    belongs_to :creator, class_name: 'User', foreign_key: 'user_id'
 
     has_many :event_attendee, foreign_key: 'event_id'
-    has_many :attendees, through: :joiners
+    # has_many :attendees, through: :joiners
+    has_many :attendees, through: :attendees
 
     scope :upcoming_events, -> { where('date > ?', Time.now) }
     scope :past_events, -> { where('date <= ?', Time.now) }
