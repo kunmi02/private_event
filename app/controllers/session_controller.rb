@@ -3,10 +3,10 @@ class SessionController < ApplicationController
     @username = params[:username]
     @user = User.find_by(username: @username)
     if !@user.nil?
-      flash[:alert] = 'Log in successful'
+      flash[:notice] = 'Log in successful'
       session[:current_user_id] = @user.id
       session[:user_name] = @user.username
-      redirect_to users_path
+      redirect_to user_path(id: @user.id)
     else
       flash[:alert] = 'User not found.'
       redirect_to root_path
@@ -19,4 +19,17 @@ class SessionController < ApplicationController
     @_current_user = nil
     redirect_to root_path
   end
+
+  def logged_in?
+    return false if !session[:current_user_id]
+  end
+
+  # private
+
+  # def require_login
+  #   unless logged_in?
+  #     flash[:error] = "You must be logged in to access this section"
+  #     redirect_to root_path 
+  #   end
+  # end
 end

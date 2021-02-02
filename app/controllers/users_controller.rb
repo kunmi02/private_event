@@ -1,14 +1,14 @@
-class EventAttendeesController < ApplicationController
-  def join
-    @event_attendee = EventAttendee.new(event_attended_id: params[:id], attendee_id: current_user.id)
-    @event_attendee.save
-    redirect_to events_path
-  end
-end
+# class EventAttendeesController < ApplicationController
+#   def join
+#     @event_attendee = EventAttendee.new(event_attended_id: params[:id], attendee_id: current_user.id)
+#     @event_attendee.save
+#     redirect_to events_path
+#   end
+# end
 
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
-  # before_action :require_login, only: %i[edit update index]
+  before_action :require_login, only: %i[edit update index show]
 
   # GET /users or /users.json
   def index

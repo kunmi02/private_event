@@ -1,23 +1,21 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+<%# <p id="notice"><%= notice ></p> %>
+<p>&nbsp</p>
+<strong>Events created by: <%= @user.username %></strong>
 
 <% @user.events.each do |event| %>
-
   <p>
-    <strong>User's Events:</strong>
+  <li>
     <%= event.description %>
-    <%= event.venue %>
+    <%= link_to 'Invite attendees', new_attendee_path %> |
+    <%= link_to 'Show attendees', attendee_path %>
+  </li>
   </p>
-
 <% end %>
+
+<p>&nbsp</p>
+<strong>Events attended by: <%= @user.username %></strong>
+
+<p>&nbsp</p>
+<strong>Events <%= @user.username %> is invited to:</strong>
 <%= link_to 'Edit', users_path %> |
 <%= link_to 'Back', root_path %>

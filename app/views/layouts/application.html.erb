@@ -11,7 +11,8 @@
   </head>
 
   <body>
-    
+    <p id="notice"><%= notice %></p>
+    <%# <p id="error"><%= errors ></p> %>
     <% if session[:current_user_id] %>
       <span>Welcome! </span>
       <strong><%= session[:user_name] %></strong>

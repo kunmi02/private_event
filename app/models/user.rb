@@ -3,7 +3,7 @@ class User < ApplicationRecord
     has_many :events
     # has_many :joiners
     has_many :event_attended, through: :attendees
-    has_many :attended_events, through: :attendees
+    has_many :attended_events, through: :attendees, source: :event
 
 end
 
