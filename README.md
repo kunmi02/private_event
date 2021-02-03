@@ -21,7 +21,7 @@ To get a local copy of the repository please run the following commands on your 
 $ cd  folder-name
 
 ~~~bash
-git clone git@github.com:uchennaanya/kunmi02/private_event/
+git clone https://github.com/kunmi02/private_event.git
 $ cd members_only
 $ bundle install 
 $ rails db:migrate
