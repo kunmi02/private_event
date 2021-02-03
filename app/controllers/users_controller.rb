@@ -1,11 +1,3 @@
-# class EventAttendeesController < ApplicationController
-#   def join
-#     @event_attendee = EventAttendee.new(event_attended_id: params[:id], attendee_id: current_user.id)
-#     @event_attendee.save
-#     redirect_to events_path
-#   end
-# end
-
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   before_action :require_login, only: %i[edit update index show]
@@ -17,7 +9,9 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
-    
+    @invited_events = User.find(params[:id]).attended_events
+    @upcoming_events = @invited_events.upcoming_events
+    @past_events = @invited_events.past_events
   end
 
   # GET /users/new

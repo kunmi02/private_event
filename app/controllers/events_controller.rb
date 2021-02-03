@@ -4,10 +4,17 @@ class EventsController < ApplicationController
   # GET /events or /events.json
   def index
     @events = Event.all
+    @upcoming_events = Event.upcoming_events
+    @past_events = Event.past_events
   end
 
+
+  def invite_user_to_event
+    user1.user_events.build(event_id: 1).save
+  end
   # GET /events/1 or /events/1.json
   def show
+    @attendees = Event.find(params[:id]).attendees
   end
 
   # GET /events/new
@@ -27,12 +34,10 @@ class EventsController < ApplicationController
   def create
 
     current_user = User.find(session[:current_user_id])
-    @event = Event.new(event_params)
+    @event = current_user.events.build(event_params)
 
     respond_to do |format|
       if @event.save
-        Joiner.create(event: @event, user: current_user)
-
         format.html { redirect_to @event, notice: "Event was successfully created." }
         format.json { render :show, status: :created, location: @event }
       else

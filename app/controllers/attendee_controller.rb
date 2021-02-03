@@ -16,7 +16,6 @@ class AttendeeController < ApplicationController
   def create
     @username = params[:username]
     @attendee = Attendee.new(attendee_params)
-    byebug
 
     respond_to do |format|
       if @attendee.save

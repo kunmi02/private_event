@@ -26,4 +26,26 @@
 
 <br>
 
+
+<strong>Past Events</strong>
+<p><% @past_events.each do |event| %>
+  <p>
+  <li>
+    <%= event.description %>
+  </li>
+  </p>
+<% end %>
+</p>
+
+<p>&nbsp</p>
+<strong>Upcoming Events</strong>
+<p><% @upcoming_events.each do |event| %>
+  <p>
+  <li>
+    <%= event.description %>
+  </li>
+  </p>
+<% end %>
+</p>
+
 <%= link_to 'New Event', new_event_path %>

@@ -13,9 +13,25 @@
 <% end %>
 
 <p>&nbsp</p>
-<strong>Events attended by: <%= @user.username %></strong>
+<strong>Events attended by: <%= @user.username %>(Past Events)</strong>
+<p><% @past_events.each do |event| %>
+  <p>
+  <li>
+    <%= event.description %>
+  </li>
+  </p>
+<% end %>
+</p>
 
 <p>&nbsp</p>
-<strong>Events <%= @user.username %> is invited to:</strong>
+<strong>Events <%= @user.username %> will be attending:(Upcoming Events)</strong>
+<p><% @upcoming_events.each do |event| %>
+  <p>
+  <li>
+    <%= event.description %>
+  </li>
+  </p>
+<% end %>
+</p>
 <%= link_to 'Edit', users_path %> |
 <%= link_to 'Back', root_path %>
