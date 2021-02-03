@@ -1,11 +1,3 @@
-# class EventAttendeesController < ApplicationController
-#   def join
-#     @event_attendee = EventAttendee.new(event_attended_id: params[:id], attendee_id: current_user.id)
-#     @event_attendee.save
-#     redirect_to events_path
-#   end
-# end
-
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   before_action :require_login, only: %i[edit update index show]
@@ -17,9 +9,9 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
-    @user = User.find_by(:id)
-    @upcoming_events = @user.event_attended.upcoming_events
-    @past_events = @user.event_attended.past_events
+    @invited_events = User.find(params[:id]).attended_events
+    @upcoming_events = @invited_events.upcoming_events
+    @past_events = @invited_events.past_events
   end
 
   # GET /users/new
@@ -28,8 +20,7 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit
-  end
+  def edit; end
 
   # GET /sign_in
   def sign_in
@@ -39,7 +30,7 @@ class UsersController < ApplicationController
   # def log_in
   #   @username = params[:username]
   #   @user = User.where(username: @username).any?
-    
+
   #     if @user
   #       redirect_to users_path
   #     else
@@ -55,7 +46,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:current_user_id] = @user.id
-        format.html { redirect_to users_path, notice: "User was successfully created." }
+        format.html { redirect_to users_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -68,7 +59,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: "User was successfully updated." }
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -81,19 +72,20 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(:username, :email)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def user_params
+    params.require(:user).permit(:username, :email)
+  end
 end
