@@ -21,7 +21,7 @@ class SessionController < ApplicationController
   end
 
   def logged_in?
-    return false if !session[:current_user_id]
+    return false unless session[:current_user_id]
   end
 
   # private
@@ -29,7 +29,7 @@ class SessionController < ApplicationController
   # def require_login
   #   unless logged_in?
   #     flash[:error] = "You must be logged in to access this section"
-  #     redirect_to root_path 
+  #     redirect_to root_path
   #   end
   # end
 end
