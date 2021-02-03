@@ -1,3 +1,4 @@
+# rubocop:disable Style/GuardClause
 class ApplicationController < ActionController::Base
   def logged_in?
     return true if session[:current_user_id]
@@ -12,3 +13,5 @@ class ApplicationController < ActionController::Base
     end
   end
 end
+
+# rubocop:enable Style/GuardClause
