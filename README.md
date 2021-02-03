@@ -1,4 +1,4 @@
-# Authentication
+# Private_Event
 
 - This project is about custom authentication, advance relationship/association between models and basic routing
 
@@ -21,7 +21,7 @@ To get a local copy of the repository please run the following commands on your 
 $ cd  folder-name
 
 ~~~bash
-git clone git@github.com:uchennaanya/members_only.git
+git clone git@github.com:uchennaanya/kunmi02/private_event/
 $ cd members_only
 $ bundle install 
 $ rails db:migrate
