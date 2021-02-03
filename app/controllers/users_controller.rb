@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @invited_events = User.find(params[:id]).attended_events
     @upcoming_events = @invited_events.upcoming_events
     @past_events = @invited_events.past_events
+    @created_events = User.find(params[:id]).events
   end
 
   # GET /users/new
@@ -26,18 +27,6 @@ class UsersController < ApplicationController
   def sign_in
     @user = User.new
   end
-
-  # def log_in
-  #   @username = params[:username]
-  #   @user = User.where(username: @username).any?
-
-  #     if @user
-  #       redirect_to users_path
-  #     else
-  #       flash[:alert] = 'User not found.'
-  #       redirect_to sign_in_path
-  #     end
-  # end
 
   # POST /users or /users.json
   def create

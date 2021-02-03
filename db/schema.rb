@@ -10,31 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_202_175_214) do
-  create_table 'events', force: :cascade do |t|
-    t.string 'description'
-    t.datetime 'date'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'user_id'
+ActiveRecord::Schema.define(version: 2021_02_02_175214) do
+
+  create_table "events", force: :cascade do |t|
+    t.string "description"
+    t.datetime "date"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
-  create_table 'user_events', force: :cascade do |t|
-    t.integer 'user_id', null: false
-    t.integer 'event_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['event_id'], name: 'index_user_events_on_event_id'
-    t.index ['user_id'], name: 'index_user_events_on_user_id'
+  create_table "user_events", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_user_events_on_event_id"
+    t.index ["user_id"], name: "index_user_events_on_user_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'username'
-    t.string 'email'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key 'user_events', 'events'
-  add_foreign_key 'user_events', 'users'
+  add_foreign_key "events", "users"
+  add_foreign_key "user_events", "events"
+  add_foreign_key "user_events", "users"
 end
