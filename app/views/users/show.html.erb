@@ -1,5 +1,11 @@
 <%# <p id="notice"><%= notice ></p> %>
-<p>&nbsp</p>
+
+<%= link_to 'Create New Event', new_event_path %> |
+  <%= link_to 'Edit', users_path %> |
+  <%= link_to 'Back', root_path %>  
+<p>
+</p>
+
 <strong>Events created by: <%= @user.username %></strong>
 
 <% @created_events.each do |event| %>
@@ -31,6 +37,4 @@
   </p>
 <% end %>
 </p>
-<%= link_to 'Create New Event', new_event_path %> |
-<%= link_to 'Edit', users_path %> |
-<%= link_to 'Back', root_path %> 
+
