@@ -22,7 +22,7 @@ $ cd  folder-name
 
 ~~~bash
 git clone https://github.com/kunmi02/private_event.git
-$ cd members_only
+$ cd private_events
 $ bundle install 
 $ rails db:migrate
 $ yarn install --check-files
