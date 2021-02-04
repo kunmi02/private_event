@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PrivateEvents</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <p id="notice"><%= notice %></p>
+    <%# <p id="error"><%= errors ></p> %>
+    <% if session[:current_user_id] %>
+      <span>Welcome! </span>
+      <strong><%= session[:user_name] %></strong>
+      <span>&nbsp</span>
+      <span>&nbsp</span>
+      <span>&nbsp</span>
+      <%= link_to 'Log out', log_out_path, method: :delete%>
+    <% else %>
+      <%= link_to 'sign up', new_user_path %>
+    <% end %>
+    
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+
+<%# <% <strong>Events created by: <%= @user.username ></strong> <br> %>
+<%= link_to 'Back', events_path %>
+<p> &nbsp</p>
+ <strong>Attendees for the events are: </strong> <br>
+
+<% @attendees.each do |user| %>
+  <p>
+  <li>
+    <%= user.username %>
+  </li>
+  </p>
+<% end %>
+
+
+
+
